@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 <template>
   <div>
     <button
@@ -47,6 +49,25 @@ export default {
       message: ''
     }
   },
+  methods: {
+    // this method calls the AuthService login() method
+    login () {
+      auth.login()
+    },
+    handleAuthentication () {
+      auth.handleAuthentication()
+    },
+    logout () {
+      auth.logout()
+    },
+    privateMessage () {
+      const url = `${API_URL}/api/private/`
+      return axios.get(url, {headers: {Authorization: `Bearer ${auth.getAuthToken()}`}}).then((response) => {
+        console.log(response.data)
+        this.message = response.data || ''
+      })
+    }
+  }
 }
 </script>
 
