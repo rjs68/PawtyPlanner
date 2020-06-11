@@ -1,13 +1,52 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div>
+    <button
+      class="btn btn-primary btn-margin"
+      v-if="!authenticated"
+      @click="login()">
+      Log In
+    </button>
+
+    <button
+      class="btn btn-primary btn-margin"
+      v-if="authenticated"
+      @click="privateMessage()">
+      Call Private
+    </button>
+
+    <button
+      class="btn btn-primary btn-margin"
+      v-if="authenticated"
+      @click="logout()">
+      Log Out
+    </button>
+    {{ message }}
+    <br>
   </div>
 </template>
 
 <script>
+import AuthService from './auth/AuthService'
+import axios from 'axios'
+
+const API_URL = 'http://localhost:8000'
+const auth = new AuthService()
+
 export default {
-  name: 'App'
+  name: 'app',
+  data () {
+    this.handleAuthentication()
+    this.authenticated = false
+
+    auth.authNotifier.on('authChange', authState => {
+      this.authenticated = authState.authenticated
+    })
+
+    return {
+      authenticated: false,
+      message: ''
+    }
+  },
 }
 </script>
 
