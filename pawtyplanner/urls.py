@@ -6,7 +6,7 @@ from pawtyplannerbackend import views
 
 
 urlpatterns = [
-    url(r'', views.index),
+    # url(r'', views.index),
     path('pawtyplannerbackend/', include('pawtyplannerbackend.urls')),
     url(r'^api/public/', views.public),
     url(r'^api/private/', views.private),

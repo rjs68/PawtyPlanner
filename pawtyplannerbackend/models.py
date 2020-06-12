@@ -6,15 +6,24 @@ class Product(models.Model):
     price = models.FloatField()
     picture = models.ImageField()
 
+    def __str__(self):
+        return self.name
+
 
 class Design(models.Model):
     name = models.CharField(max_length=50, unique=True)
     picture = models.ImageField()
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
     order_number = models.IntegerField(unique=True)
     price = models.FloatField()
+
+    def __str__(self):
+        return str(self.order_number)
 
 
 class ProductOrder(models.Model):
@@ -23,7 +32,13 @@ class ProductOrder(models.Model):
     quantity = models.IntegerField()
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.product.name
+
 
 class Customer(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
