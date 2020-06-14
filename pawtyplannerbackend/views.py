@@ -3,8 +3,24 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse
 
 
-def index(request):
-    return HttpResponse("Welcome to Pawty Planner!")
+def home(request):
+    return render(request, 'pawtyplannerbackend/home.html')
+
+
+def buy(request):
+    return render(request, 'pawtyplannerbackend/buy.html')
+
+
+def gallery(request):
+    return render(request, 'pawtyplannerbackend/gallery.html')
+
+
+def contact(request):
+    return render(request, 'pawtyplannerbackend/contact.html')
+
+
+def checkout(request):
+    return render(request, 'pawtyplannerbackend/checkout.html')
 
 
 def public(request):
